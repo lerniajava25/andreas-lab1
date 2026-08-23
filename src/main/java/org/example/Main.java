@@ -1,17 +1,24 @@
 package org.example;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-public class Main {
-    static void main() {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        IO.println(String.format("Hello and welcome!"));
+import java.util.Scanner;
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            IO.println("i = " + i);
-        }
+public class Main {
+
+    public static void main(String[] args) {
+
+        IO.println("Electricity Price Checker");
+        IO.println("=========================");
+        IO.println("");
+        IO.println("1. Choose area (SE1, SE2, SE3, SE4)");
+        IO.println("2. Min, max and average price");
+        IO.println("3. Sort prices (low to high)");
+        IO.println("4. Best charging hours (4h consecutive)");
+        IO.println("e. QUIT");
+
+        Scanner scanner = new Scanner(System.in);
+        IO.print("Your choice: ");
+        String choice = scanner.nextLine();
+        IO.println("You chose: " + choice);
+
     }
 }
