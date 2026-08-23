@@ -6,8 +6,8 @@ public class Main {
 
     public static void main(String[] args) {
 
-        IO.println("Electricity Price Checker");
-        IO.println("=========================");
+        IO.println("       [Electricity Price Checker]");
+        IO.println("=========================================");
         IO.println("");
         IO.println("1. Choose area (SE1, SE2, SE3, SE4)");
         IO.println("2. Min, max and average price");
@@ -16,6 +16,10 @@ public class Main {
         IO.println("e. QUIT");
 
         Scanner scanner = new Scanner(System.in);
+
+        boolean running = true;
+        while (running) {
+
         IO.print("Your choice: ");
         String choice = scanner.nextLine();
 
@@ -39,6 +43,7 @@ public class Main {
             case "e":
             case "E":
                 IO.println("Exiting Program");
+                running = false;
                 break;
 
             default:
@@ -46,4 +51,4 @@ public class Main {
         }
 
     }
-}
+}}
