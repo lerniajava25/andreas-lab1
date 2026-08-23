@@ -18,7 +18,32 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         IO.print("Your choice: ");
         String choice = scanner.nextLine();
-        IO.println("You chose: " + choice);
+
+        switch (choice) {
+            case "1":
+                IO.println("You chose area selection");
+                break;
+
+            case "2":
+                IO.println("You chose Min, max and average price");
+                break;
+
+            case "3":
+                IO.println("You chose Sort prices");
+                break;
+
+            case "4":
+                IO.println("You chose best charging hours");
+                break;
+
+            case "e":
+            case "E":
+                IO.println("Exiting Program");
+                break;
+
+            default:
+                IO.println("Invalid choice");
+        }
 
     }
 }
