@@ -9,6 +9,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         boolean running = true;
+        String area = "";
 
         while (running) {
 
@@ -26,7 +27,21 @@ public class Main {
 
             switch (choice) {
                 case "1":
-                    IO.println("You chose area selection");
+                    IO.print("Choose area (SE1, SE2, SE3, SE4): ");
+
+                    String selectedArea = scanner.nextLine();
+
+                    if (selectedArea.equalsIgnoreCase("SE1")
+                            || selectedArea.equalsIgnoreCase("SE2")
+                            || selectedArea.equalsIgnoreCase("SE3")
+                            || selectedArea.equalsIgnoreCase("SE4")) {
+
+                        area = selectedArea.toUpperCase();
+                        IO.println("Selected area: " + area);
+
+                    } else {
+                        IO.println("Invalid area");
+                    }
                     break;
 
                 case "2":
