@@ -1,6 +1,13 @@
 package org.example;
 
+import com.google.gson.Gson;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.util.Scanner;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Main {
 
@@ -39,9 +46,58 @@ public class Main {
                         area = selectedArea.toUpperCase();
                         IO.println("Selected area: " + area);
 
+                        LocalDate today = LocalDate.now();
+
+                        DateTimeFormatter formatter =
+                                DateTimeFormatter.ofPattern("MM-dd");
+
+                        String formattedDate = today.format(formatter);
+
+                        int year = today.getYear();
+
+                        String url =
+                                "https://www.elprisetjustnu.se/api/v1/prices/"
+                                        + year
+                                        + "/"
+                                        + formattedDate
+                                        + "_"
+                                        + area
+                                        + ".json";
+
+                        HttpClient client = HttpClient.newHttpClient();
+
+                        HttpRequest request = HttpRequest.newBuilder()
+                                .uri(URI.create(url))
+                                .GET()
+                                .build();
+
+                        try {
+                            HttpResponse<String> response = client.send(
+                                    request,
+                                    HttpResponse.BodyHandlers.ofString()
+                            );
+
+                            IO.println("Status code: " + response.statusCode());
+
+                            Gson gson = new Gson();
+
+                            ElectricityPrice[] prices = gson.fromJson(
+                                    response.body(),
+                                    ElectricityPrice[].class
+                            );
+
+                            for (ElectricityPrice price : prices) {
+                                IO.println(price.getTimeStart() + " - " + price.getSekPerKwh());
+                            }
+
+                        } catch (Exception e) {
+                            IO.println("Something went wrong when fetching prices.");
+                        }
+
                     } else {
                         IO.println("Invalid area");
                     }
+
                     break;
 
                 case "2":
