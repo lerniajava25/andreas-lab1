@@ -17,6 +17,7 @@ public class Main {
 
         boolean running = true;
         String area = "";
+        ElectricityPrice[] prices = null;
 
         while (running) {
 
@@ -81,14 +82,13 @@ public class Main {
 
                             Gson gson = new Gson();
 
-                            ElectricityPrice[] prices = gson.fromJson(
+                            prices = gson.fromJson(
                                     response.body(),
                                     ElectricityPrice[].class
                             );
 
-                            for (ElectricityPrice price : prices) {
-                                IO.println(price.getTimeStart() + " - " + price.getSekPerKwh());
-                            }
+                            IO.println("Prices successfully loaded.");
+
 
                         } catch (Exception e) {
                             IO.println("Something went wrong when fetching prices.");
@@ -101,15 +101,27 @@ public class Main {
                     break;
 
                 case "2":
-                    IO.println("You chose Min, max and average price");
+                    if (prices == null) {
+                        IO.println("Please choose an area first.");
+                    } else {
+                        PriceAnalyzer.printPriceAnalysis(prices);
+                    }
                     break;
 
                 case "3":
-                    IO.println("You chose Sort prices");
+                    if (prices == null) {
+                        IO.println("Please choose an area first.");
+                    } else {
+                        PriceAnalyzer.printSortedPrices(prices);
+                    }
                     break;
 
                 case "4":
-                    IO.println("You chose best charging hours");
+                    if (prices == null) {
+                        IO.println("Please choose an area first.");
+                    } else {
+                        PriceAnalyzer.printBestChargingWindow(prices);
+                    }
                     break;
 
                 case "e":

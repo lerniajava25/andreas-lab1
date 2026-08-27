@@ -1,6 +1,7 @@
 package org.example;
 
 import com.google.gson.annotations.SerializedName;
+import java.time.OffsetDateTime;
 
 public class ElectricityPrice {
 
@@ -14,7 +15,7 @@ public class ElectricityPrice {
         return sekPerKwh;
     }
 
-    public String getTimeStart() {
-        return timeStart;
+    public OffsetDateTime getParsedTimeStart() {
+        return OffsetDateTime.parse(timeStart);
     }
 }
